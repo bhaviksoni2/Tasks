@@ -26,11 +26,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let city: String
     }
     var users = [User]()
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .red
+        refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
+        
+        
+        return refreshControl
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
        
        parseJSON()
+        if #available(iOS 10.0, *){
+            tableView.refreshControl = refresher
+        }else {
+            tableView.addSubview(refresher)
+        }
    
+    }
+    @objc func requestData() {
+        print("refreshing data")
+        let deadLine = DispatchTime.now() + .milliseconds(1000)
+        DispatchQueue.main.asyncAfter(deadline: deadLine){
+            self.refresher.endRefreshing()
+        }
     }
    
     func parseJSON(){
@@ -82,6 +102,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.cityLabel.text = user.city
         // add code to download the image from fruit.imageURL
         return cell
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            users.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
     }
 
 }
