@@ -18,12 +18,9 @@ struct User{
   }
 }
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+  private let jsonFromAlamofire = JsonFromAlamofire()
   @IBOutlet weak var tableView: UITableView!
-  struct User{
-    let name: String
-    let email: String
-    let city: String
-  }
+ 
   var users = [User]()
   lazy var refresher: UIRefreshControl = {
     let refreshControl = UIRefreshControl()
@@ -33,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }()
   override func viewDidLoad() {
     super.viewDidLoad()
-    parseJSON()
+    jsonParse()
     if #available(iOS 10.0, *){
       tableView.refreshControl = refresher
     }else {
@@ -47,34 +44,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.refresher.endRefreshing()
     }
   }
-  func parseJSON(){
-    guard let url = URL(string: "http://jsonplaceholder.typicode.com/users/") else {return}
-    let session = URLSession.shared
-      session.dataTask(with: url) { (data, response, error) in
+  func jsonParse(){
+    guard let urlToExecute = URL(string: "http://jsonplaceholder.typicode.com/users") else { return }
+    do {
+    jsonFromAlamofire.execute(urlToExecute) { (json, error) in
       if error != nil {
-        print(error ?? "")
-      }
-      if data != nil {
-        do{
-          let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
-          guard let JSon = json as? [Dictionary<String, Any>] else {return}
-          for nam in JSon{
-            guard let na = nam["name"] as? String else { return }
-            guard let em = nam["email"] as? String else { return }
-            guard let add = nam["address"] as? [String: Any],
-              let ci = add["city"] as? String else{ return }
-            let user = User(name: na, email: em, city: ci)
-            self.users.append(user)
-          }
-          OperationQueue.main.addOperation ({
-            self.tableView.reloadData()
-          })
-        }catch{
-          print(error)
+        print("Error!")
+      }else if let json = json {
+        print("HI")
+        for nam in json{
+        guard let na = nam["name"] as? String else { return }
+        guard let em = nam["email"] as? String else { return }
+        guard let add = nam["address"] as? [String: Any],
+          let ci = add["city"] as? String else{ return }
+        let user = User(name: na, email: em, city: ci)
+        self.users.append(user)
         }
+        print(self.users)
       }
-    }.resume()
+      OperationQueue.main.addOperation ({
+        self.tableView.reloadData()
+      })
+    }
+    }catch{
+  print(error)
   }
+    
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return users.count
   }
