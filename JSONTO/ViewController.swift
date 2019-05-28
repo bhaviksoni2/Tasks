@@ -7,21 +7,41 @@
 //
 
 import UIKit
-struct User{
+import SQLite
+import Alamofire
+class Users:  NSObject, Decodable{
+  let id: Int
   let name: String
+  let username: String
   let email: String
-  let city: String
-  init(name: String, email: String, city: String) {
+  let address: City
+  let phone: String
+  let website: String
+  init(id: Int,name: String,username: String, email: String, address: City, phone: String, website: String) {
+    self.id = id
     self.name = name
-    self.email = email
+    self.username = username
+    self.email =  email
+    self.address = address
+    self.phone = phone
+    self.website = website
+  }
+}
+class City: Decodable {
+  let street: String
+  let suite: String
+  let city: String
+  let zipcode: String
+  init(street: String, suite: String, city: String, zipcode: String) {
+    self.street = street
+    self.suite = suite
     self.city = city
+    self.zipcode = zipcode
   }
 }
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-  private let jsonFromAlamofire = JsonFromAlamofire()
+  var user = [Users]()
   @IBOutlet weak var tableView: UITableView!
- 
-  var users = [User]()
   lazy var refresher: UIRefreshControl = {
     let refreshControl = UIRefreshControl()
     refreshControl.tintColor = .red
@@ -37,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       tableView.addSubview(refresher)
     }
   }
-  @objc func requestData() {
+   @objc func requestData() {
     print("refreshing data")
     let deadLine = DispatchTime.now() + .milliseconds(1000)
     DispatchQueue.main.asyncAfter(deadline: deadLine){
@@ -45,51 +65,71 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   func jsonParse(){
-    guard let urlToExecute = URL(string: "http://jsonplaceholder.typicode.com/users") else { return }
+    let fileUrl = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("UsersData22.sqlite")
+    print(fileUrl.path)
+    print("Everything is Fine")
     do {
-    jsonFromAlamofire.execute(urlToExecute) { (json, error) in
-      if error != nil {
-        print("Error!")
-      }else if let json = json {
-        print("HI")
-        for nam in json{
-        guard let na = nam["name"] as? String else { return }
-        guard let em = nam["email"] as? String else { return }
-        guard let add = nam["address"] as? [String: Any],
-          let ci = add["city"] as? String else{ return }
-        let user = User(name: na, email: em, city: ci)
-        self.users.append(user)
+      Alamofire.request("http://jsonplaceholder.typicode.com/users").responseData { respone in
+        if let data = respone.result.value, let utf8s = String(data: data, encoding: .utf8) {
+          do{
+            let decoder = JSONDecoder()
+            let userdata = try decoder.decode([Users].self, from: data)
+            self.user = userdata
+            let db = try Connection(fileUrl.path)
+            print("Done")
+            let name = Expression<String>("name")
+            let email =  Expression<String>("emial")
+            let city = Expression<String>("city")
+            let usersTable = Table("USERS6")
+            do {
+              try db.scalar(usersTable.exists)
+              for user in try db.prepare(usersTable) {
+                print("name: \(user[name]), email: \(user[email]), city: \(user[city])")
+                // id: 1, name: Optional("Alice"), email: alice@mac.com
+              }
+            } catch {
+            }
+            try db.run(usersTable.create { t in
+              t.column(name, primaryKey: true)
+              t.column(email)
+              t.column(city)
+            })
+            var iterator = self.user.makeIterator()
+            while let value = iterator.next(){
+              let insert = usersTable.insert(name <- value.name, email <- value.email, city <- value.address.city)
+              try db.run(insert)
+            }
+            OperationQueue.main.addOperation ({
+              self.tableView.reloadData()
+            })
+          }catch{
+            print("Table is already created")
+            OperationQueue.main.addOperation ({
+              self.tableView.reloadData()
+            })
+          }
         }
-        print(self.users)
       }
-      OperationQueue.main.addOperation ({
-        self.tableView.reloadData()
-      })
     }
-    }catch{
-  print(error)
   }
-    
-  }
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return users.count
+    return user.count
   }
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 85.0
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TabelCell
-    let user = users[indexPath.row]
-    cell.nameLabel.text = user.name
-    cell.emailLabel.text = user.email
-    cell.cityLabel.text = user.city
+    let users = user
+    cell.nameLabel.text = users[indexPath.row].name    
+    cell.emailLabel.text = users[indexPath.row].email
+    cell.cityLabel.text = users[indexPath.row].address.city
     // add code to download the image from fruit.imageURL
     return cell
   }
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == UITableViewCell.EditingStyle.delete {
-      users.remove(at: indexPath.row)
+      user.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
   }

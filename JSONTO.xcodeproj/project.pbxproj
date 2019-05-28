@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,11 +13,12 @@
 		AD591BD2229685AF0063679C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD591BD1229685AF0063679C /* Assets.xcassets */; };
 		AD591BD5229685AF0063679C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD591BD3229685AF0063679C /* LaunchScreen.storyboard */; };
 		AD6E52492297AF8100EF0302 /* TabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6E52482297AF8100EF0302 /* TabelCell.swift */; };
-		ADF76F902298F296000362F7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF76F8F2298F296000362F7 /* Alamofire.framework */; };
-		ADF76F932298F6FF000362F7 /* JsonFromAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF76F922298F6FF000362F7 /* JsonFromAlamofire.swift */; };
+		AF36CA1107155DD1F3DAE39C /* Pods_JSONTO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0051B61794D8999AAE19643F /* Pods_JSONTO.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0051B61794D8999AAE19643F /* Pods_JSONTO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JSONTO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D614C42D824D465CF90AFA0 /* Pods-JSONTO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONTO.release.xcconfig"; path = "Target Support Files/Pods-JSONTO/Pods-JSONTO.release.xcconfig"; sourceTree = "<group>"; };
 		AD591BC7229685AE0063679C /* JSONTO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONTO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD591BCA229685AE0063679C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD591BCC229685AE0063679C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +27,7 @@
 		AD591BD4229685AF0063679C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD591BD6229685AF0063679C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD6E52482297AF8100EF0302 /* TabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabelCell.swift; sourceTree = "<group>"; };
-		ADF76F8F2298F296000362F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		ADF76F922298F6FF000362F7 /* JsonFromAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFromAlamofire.swift; sourceTree = "<group>"; };
+		C27E5C3565D5461871354B09 /* Pods-JSONTO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONTO.debug.xcconfig"; path = "Target Support Files/Pods-JSONTO/Pods-JSONTO.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,19 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF76F902298F296000362F7 /* Alamofire.framework in Frameworks */,
+				AF36CA1107155DD1F3DAE39C /* Pods_JSONTO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F1894B36D1BE9DC4382C3D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0051B61794D8999AAE19643F /* Pods_JSONTO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AD591BBE229685AE0063679C = {
 			isa = PBXGroup;
 			children = (
 				AD591BC9229685AE0063679C /* JSONTO */,
 				AD591BC8229685AE0063679C /* Products */,
-				ADF76F8E2298F296000362F7 /* Frameworks */,
+				B700D4372A22764B846272ED /* Pods */,
+				5F1894B36D1BE9DC4382C3D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,17 +78,17 @@
 				AD591BD1229685AF0063679C /* Assets.xcassets */,
 				AD591BD3229685AF0063679C /* LaunchScreen.storyboard */,
 				AD591BD6229685AF0063679C /* Info.plist */,
-				ADF76F922298F6FF000362F7 /* JsonFromAlamofire.swift */,
 			);
 			path = JSONTO;
 			sourceTree = "<group>";
 		};
-		ADF76F8E2298F296000362F7 /* Frameworks */ = {
+		B700D4372A22764B846272ED /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ADF76F8F2298F296000362F7 /* Alamofire.framework */,
+				C27E5C3565D5461871354B09 /* Pods-JSONTO.debug.xcconfig */,
+				0D614C42D824D465CF90AFA0 /* Pods-JSONTO.release.xcconfig */,
 			);
-			name = Frameworks;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,10 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD591BD9229685AF0063679C /* Build configuration list for PBXNativeTarget "JSONTO" */;
 			buildPhases = (
+				43748E025A61EF55AC1D3146 /* [CP] Check Pods Manifest.lock */,
 				AD591BC3229685AE0063679C /* Sources */,
 				AD591BC4229685AE0063679C /* Frameworks */,
 				AD591BC5229685AE0063679C /* Resources */,
-				ADF76F912298F2B5000362F7 /* Carthage Copy Frameworks */,
+				BEBDAB9F2F7A112A51F08475 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -150,7 +160,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		ADF76F912298F2B5000362F7 /* Carthage Copy Frameworks */ = {
+		43748E025A61EF55AC1D3146 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -158,16 +168,35 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Carthage Copy Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JSONTO-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEBDAB9F2F7A112A51F08475 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JSONTO/Pods-JSONTO-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JSONTO/Pods-JSONTO-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JSONTO/Pods-JSONTO-frameworks.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -176,7 +205,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF76F932298F6FF000362F7 /* JsonFromAlamofire.swift in Sources */,
 				AD591BCD229685AE0063679C /* ViewController.swift in Sources */,
 				AD6E52492297AF8100EF0302 /* TabelCell.swift in Sources */,
 				AD591BCB229685AE0063679C /* AppDelegate.swift in Sources */,
@@ -323,6 +351,7 @@
 		};
 		AD591BDA229685AF0063679C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C27E5C3565D5461871354B09 /* Pods-JSONTO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -345,6 +374,7 @@
 		};
 		AD591BDB229685AF0063679C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D614C42D824D465CF90AFA0 /* Pods-JSONTO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
