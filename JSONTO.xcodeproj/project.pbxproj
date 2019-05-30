@@ -12,7 +12,7 @@
 		AD591BD0229685AE0063679C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD591BCE229685AE0063679C /* Main.storyboard */; };
 		AD591BD2229685AF0063679C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD591BD1229685AF0063679C /* Assets.xcassets */; };
 		AD591BD5229685AF0063679C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD591BD3229685AF0063679C /* LaunchScreen.storyboard */; };
-		AD6E52492297AF8100EF0302 /* TabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6E52482297AF8100EF0302 /* TabelCell.swift */; };
+		AD6E52492297AF8100EF0302 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6E52482297AF8100EF0302 /* TableCell.swift */; };
 		AF36CA1107155DD1F3DAE39C /* Pods_JSONTO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0051B61794D8999AAE19643F /* Pods_JSONTO.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +26,7 @@
 		AD591BD1229685AF0063679C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD591BD4229685AF0063679C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD591BD6229685AF0063679C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD6E52482297AF8100EF0302 /* TabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabelCell.swift; sourceTree = "<group>"; };
+		AD6E52482297AF8100EF0302 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		C27E5C3565D5461871354B09 /* Pods-JSONTO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONTO.debug.xcconfig"; path = "Target Support Files/Pods-JSONTO/Pods-JSONTO.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +71,7 @@
 		AD591BC9229685AE0063679C /* JSONTO */ = {
 			isa = PBXGroup;
 			children = (
-				AD6E52482297AF8100EF0302 /* TabelCell.swift */,
+				AD6E52482297AF8100EF0302 /* TableCell.swift */,
 				AD591BCA229685AE0063679C /* AppDelegate.swift */,
 				AD591BCC229685AE0063679C /* ViewController.swift */,
 				AD591BCE229685AE0063679C /* Main.storyboard */,
@@ -206,7 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD591BCD229685AE0063679C /* ViewController.swift in Sources */,
-				AD6E52492297AF8100EF0302 /* TabelCell.swift in Sources */,
+				AD6E52492297AF8100EF0302 /* TableCell.swift in Sources */,
 				AD591BCB229685AE0063679C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
