@@ -4,14 +4,14 @@ import Alamofire
 class User: Decodable{
   let name: String
   let email: String
-  let address: City
-  init(name: String, email: String, address: City){
+  let address: Address
+  init(name: String, email: String, address: Address){
     self.address = address
     self.name = name
     self.email = email
   }
 }
-class City: Decodable {
+class Address: Decodable {
   let city: String
   init(city: String){
     self.city = city
@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   let name = Expression<String>("name")
   let email =  Expression<String>("emial")
   let city = Expression<String>("city")
-  let usersTable = Table("uSer5")
+  let usersTable = Table("uSer6")
   var db : Connection!
   
   @IBOutlet weak var tableView: UITableView!
@@ -57,8 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
-  func createTable(){
-    
+  func createTable(){    
     do{
       try db.run(usersTable.create { t in
         t.column(name)
@@ -76,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let name = user[self.name]
         let email = user[self.email]
         let city = user[self.city]
-        let city1 = City(city: city)
+        let city1 = Address(city: city)
         let user2 = User(name: name, email: email, address: city1)
         self.user.append(user2)
       }
