@@ -41,15 +41,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     print(fileUrl.path)
     do{
       db = try Connection(fileUrl.path)
-      print(type(of: db))
       createTable()
+      loadDataFromDatabase()
+      loadDataFromApi()
     }catch{
       print("Error Making Connection")
-    }
-    if #available(iOS 10.0, *){
-      tableView.refreshControl = refresher
-    }else {
-      tableView.addSubview(refresher)
     }
   }
   
@@ -62,13 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func createTable(){
-    do{
-      try db.scalar(usersTable.exists)
-      tableAlreadyExists()
-      return
-    }catch{
-      print(error.localizedDescription)
-    }
+    
     do{
       try db.run(usersTable.create { t in
         t.column(name)
@@ -78,10 +68,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }catch{
        print("Error Creating Table")
     }
-    loadDataFromApi()
   }
   
-  func tableAlreadyExists(){
+  func loadDataFromDatabase(){
     do{
       for user in try db.prepare(usersTable) {
         let name = user[self.name]
@@ -94,8 +83,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       OperationQueue.main.addOperation ({
       self.tableView.reloadData()
       })
-      print("From tableAlreadyExists")
-      loadDataFromApi()
+      print("From loadDataFromDatabase")
     }catch{
       print(error.localizedDescription)
     }

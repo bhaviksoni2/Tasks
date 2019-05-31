@@ -60,7 +60,6 @@
                                             <constraints>
                                                 <constraint firstItem="ofH-FE-s9m" firstAttribute="leading" secondItem="Ok7-Cd-ovD" secondAttribute="leading" constant="13" id="2LM-qb-kdR"/>
                                                 <constraint firstItem="xUK-4x-hYY" firstAttribute="leading" secondItem="Ok7-Cd-ovD" secondAttribute="leading" constant="13" id="3CQ-yE-jEr"/>
-                                                <constraint firstItem="ofH-FE-s9m" firstAttribute="top" secondItem="Ok7-Cd-ovD" secondAttribute="top" constant="5" id="5Vd-Fo-9ta"/>
                                                 <constraint firstAttribute="trailing" secondItem="RFv-HF-R3i" secondAttribute="trailing" constant="13" id="7FI-kj-tZz"/>
                                                 <constraint firstItem="RFv-HF-R3i" firstAttribute="leading" secondItem="Ok7-Cd-ovD" secondAttribute="leading" constant="13" id="E0b-Cc-kF7"/>
                                                 <constraint firstAttribute="bottom" secondItem="RFv-HF-R3i" secondAttribute="bottom" constant="4.5" id="Ims-jv-SE7"/>
